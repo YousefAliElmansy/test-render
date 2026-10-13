@@ -7,7 +7,7 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 
 @Injectable()
 export class TasksService {
-  constructor(@InjectModel(Task.name) private taskModel: Model<TaskDocument>) {}
+  constructor(@InjectModel(Task.name) private taskModel: Model<TaskDocument>) { }
 
   create(dto: CreateTaskDto) {
     return this.taskModel.create(dto);
@@ -33,5 +33,5 @@ export class TasksService {
     const task = await this.taskModel.findByIdAndDelete(id).exec();
     if (!task) throw new NotFoundException('Task not found');
     return { deleted: true };
+
   }
-}
